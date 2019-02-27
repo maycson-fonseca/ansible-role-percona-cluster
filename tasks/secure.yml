@@ -6,7 +6,7 @@
   register: file_result
 
 - name: get temporary root password
-  shell: grep 'temporary password' /var/log/mysqld.log | awk '{print $NF}' | tail -n 1
+  command: grep 'temporary password' /var/log/mysqld.log | awk '{print $NF}' | tail -n 1
   register: "root_temp_password"
   when:
     - file_result.stat.exists
