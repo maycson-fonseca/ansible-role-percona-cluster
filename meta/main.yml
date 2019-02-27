@@ -1,0 +1,24 @@
+---
+
+galaxy_info:
+  author: Maycson Fonseca <maycson.fonseca@procoding.com.br>
+  description: Role Ansible Percona Cluster
+  company: "Pro Coding"
+  license: BSD
+  min_ansible_version: 2.4
+
+  platforms:
+    - name: Debian
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - all
+
+  galaxy_tags:
+    - debian
+    - ubuntu
+    - percona
+    - cluster
+
+dependencies: []

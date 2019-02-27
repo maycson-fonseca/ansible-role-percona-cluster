@@ -1,0 +1,7 @@
+---
+
+- name: Percona Cluster
+  hosts: percona-cluster
+
+  roles:
+    - ansible-role-percona-cluster

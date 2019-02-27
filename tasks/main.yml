@@ -1,0 +1,34 @@
+---
+
+- name: "include {{ ansible_distribution }} tasks"
+  include_tasks: "{{ item }}"
+  with_first_found:
+    - "os_family/{{ ansible_os_family }}.yml"
+  tags: install
+
+- name: ensure service is enabled
+  service:
+    name: "{{ percona_service }}"
+    enabled: true
+
+- name: populate service facts
+  service_facts:
+
+- name: ensure service is started
+  service:
+    name: "{{ percona_service }}"
+    state: started
+  when:
+    - ansible_facts.services[(percona_service)].state is match("stopped")
+
+- name: include secure tasks
+  include_tasks: secure.yml
+  tags: install
+
+- name: include setup tasks
+  include_tasks: setup.yml
+  tags: configure
+
+- name: include bootstrap tasks
+  include_tasks: bootstrap.yml
+  tags: configure
