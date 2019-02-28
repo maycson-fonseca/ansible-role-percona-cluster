@@ -6,19 +6,22 @@
     - "os_family/{{ ansible_os_family }}.yml"
   tags: install
 
+- name: populate service facts
+  service_facts:
+
 - name: ensure service is enabled
   service:
     name: "{{ percona_service }}"
     enabled: true
-
-- name: populate service facts
-  service_facts:
+  when:
+    - "(percona_service) in services"
 
 - name: ensure service is started
   service:
     name: "{{ percona_service }}"
     state: started
   when:
+    - "(percona_service) in services"
     - ansible_facts.services[(percona_service)].state is match("stopped")
 
 - name: include secure tasks
