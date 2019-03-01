@@ -34,7 +34,7 @@ percona_innodb_log_file_size: "1"
 percona_innodb_thread_concurrency: "{{ (2 * ansible_processor_vcpus + 2)|int }}"  # 2 * [number of CPUs] + 2
 percona_join_buffer_size: "8M"
 percona_lc_messages_dir: "/usr/share/mysql"
-percona_log_bin_trust_function_creators: "2"
+percona_log_bin_trust_function_creators: "1"
 percona_log_bin: "/var/lib/mysql/mysql-bin"
 percona_log_error: "/var/log/mysql/error.log"
 percona_log_error_verbosity: "4"
