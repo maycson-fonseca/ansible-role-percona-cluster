@@ -5,13 +5,14 @@
     path: /var/log/mysqld.log
   register: file_result
 
-- name: get temporary root password
-  command: grep 'temporary password' /var/log/mysqld.log | awk '{print $NF}' | tail -n 1
-  register: "root_temp_password"
+- name: set root password
+  command: |
+    mysql -u"root" -p"" \
+    -e "alter user 'root'@'localhost' identified with mysql_native_password by '{{ root_password }}';"
+    mysql -u"root" -p"{{ root_password }}" \
+    -e "flush privileges;"
   when:
     - file_result.stat.exists
-  notify:
-    - set root password
 
 - name: delete /var/log/mysqld.log
   file:
@@ -27,7 +28,7 @@
     host_all: yes
     state: absent
 
-- name: "secure the MySQL root user for localhost"
+- name: secure the MySQL root user for localhost
   mysql_user:
     login_user: "{{ root_user }}"
     login_password: "{{ root_password }}"
