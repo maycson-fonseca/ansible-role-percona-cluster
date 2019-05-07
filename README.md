@@ -18,7 +18,7 @@ An [Ansible](https://www.ansible.com) role to install/configure [Percona-XtraDB-
 
 ## Build Status
 
-[![Build Status](https://travis-ci.org/maycson-fonseca-procoding/ansible-role-percona-cluster.svg?branch=master)](https://travis-ci.org/maycson-fonseca-procoding/ansible-role-percona-cluster)
+[![Build Status](https://travis-ci.org/maycson-fonseca/ansible-role-percona-cluster.svg?branch=master)](https://travis-ci.org/maycson-fonseca/ansible-role-percona-cluster)
 
 ## Role Variables
 
